@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+  Liste élèves
+{% endblock %}
+
+{% block contenu %}
+<ul>
+  {% for eleve in eleve_list %}
+    <li>
+      {{eleve}}: {% for machine in eleve.machine_set.all %} {{machine}} {% endfor %}
+      <a href="{% url 'update_eleve' eleve.id %}">Modifier</a> 
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

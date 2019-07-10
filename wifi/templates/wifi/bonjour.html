@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+  Bonjour
+{% endblock %}
+
+{% block contenu %}
+<p>Bonjour {{toto}}</p>
+<a href = "{% url 'bonjour2' 3 %}">L'autre bonjour</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+  Edit élève
+{% endblock %}
+
+{% block contenu %}
+  {{eleve}}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value = "Enregistrer">
+  </form>
+{% endblock %}
