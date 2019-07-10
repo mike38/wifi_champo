@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block contenu %}
-<p>Bonjour {{toto}}</p>
-<a href = "{% url 'bonjour2' 3 %}">L'autre bonjour</a>
+<div class="cell text-center"><h3>Bonjour {{toto}}</h3></div>
+<div class="cell callout primary">
+  <a href = "{% url 'bonjour2' 3 %}">L'autre bonjour</a>
+</div>
 {% endblock %}
