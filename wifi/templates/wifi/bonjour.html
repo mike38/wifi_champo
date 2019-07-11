@@ -6,7 +6,14 @@
 
 {% block contenu %}
 <div class="cell text-center"><h3>Bonjour {{toto}}</h3></div>
-<div class="cell callout primary">
-  <a href = "{% url 'bonjour2' 3 %}">L'autre bonjour</a>
-</div>
+  <div class="cell medium-6">
+    <div class="cell callout alert">
+      Toto dit: "je ne suis pas qu'un numéro !"
+    </div>
+  </div>
+  <div class="cell medium-6">
+    <div class="cell callout primary">
+      <a href = "{% url 'bonjour2' 3 %}">L'autre bonjour</a>
+    </div>
+  </div>
 {% endblock %}
