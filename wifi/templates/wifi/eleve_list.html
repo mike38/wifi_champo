@@ -5,12 +5,17 @@
 {% endblock %}
 
 {% block contenu %}
-<ul>
-  {% for eleve in eleve_list %}
-    <li>
-      {{eleve}}: {% for machine in eleve.machine_set.all %} {{machine}} {% endfor %}
-      <a href="{% url 'update_eleve' eleve.id %}">Modifier</a> 
-    </li>
+<table>
+  <tbody>
+   <tr>{% for eleve in eleve_list %}
+
+       <td><a href="{% url 'update_eleve' eleve.id %}" >{{ eleve.nom }}</a></td>
+       <td>{{ eleve.prenom }}</td>
+       <td>{{ eleve.classe }}</td>
+       {% for machine in eleve.machine_set.all %} <td><a href="{% url 'update_machine' machine.id %}"> {{machine}} </a>
+       </td> {% endfor %}
   {% endfor %}
-</ul>
+   </tr>
+  </tbody>
+</table>
 {% endblock %}

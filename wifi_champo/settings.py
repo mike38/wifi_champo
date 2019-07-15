@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1"]
 
 LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/eleves/"
 # Application definition
 
 INSTALLED_APPS = [

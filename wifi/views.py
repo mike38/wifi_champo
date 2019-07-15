@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import Eleve
+from .models import Eleve, Machine
 
 class Login(LoginView):
     template_name = "login.html"
@@ -40,3 +40,10 @@ class UpdateEleve(UpdateView):
 
     def get_success_url(self):
         return reverse('eleve', args = [self.object.id])
+
+class UpdateMachine(UpdateView):
+    model = Machine
+    fields = ['mac', 'type' , 'actif']
+
+    def get_success_url(self):
+        return reverse('eleves')

@@ -1,3 +1,4 @@
+
 from django.db import models
 import django.core.validators
 
@@ -23,3 +24,6 @@ class Machine(models.Model):
     eleve = models.ForeignKey(Eleve, null = False, on_delete = models.CASCADE)
     type  = models.CharField(max_length = 2, choices = [('P', 'Ordinateur portable'), ('S', 'Smartphone'), ('T', 'Tablette'),])
     actif = models.BooleanField(null = False)
+
+    def __str__(self):
+        return self.mac

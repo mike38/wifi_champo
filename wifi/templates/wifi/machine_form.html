@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
 {% block titre %}
-  Edit élève
+  Edit Machine
 {% endblock %}
 
 {% block contenu %}
+    <div class="grid-x">
+    <div class="cell">
+    <h2>{{ machine.eleve }}</h2>
+    </div>
+    <div class="cell">
   <form action="" method="post">
     {% csrf_token %}
     {{form}}
     <input type="submit" value = "Enregistrer">
   </form>
+    </div>
+    </div>
 {% endblock %}
