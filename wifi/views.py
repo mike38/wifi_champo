@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -44,6 +44,31 @@ class UpdateEleve(UpdateView):
 class UpdateMachine(UpdateView):
     model = Machine
     fields = ['mac', 'type' , 'actif']
+
+    def get_success_url(self):
+        return reverse('eleves')
+
+class CreateEleve(CreateView):
+    model = Eleve
+    fields = ['nom', 'prenom', 'chambre', 'classe', 'annee', 'mail']
+    def get_success_url(self):
+        return reverse('eleve', args = [self.object.id])
+
+class CreateMachine(CreateView):
+    model = Machine
+    fields = ['mac', 'type' , 'actif']
+    def get_initial(self):
+        initial=self.initial.copy()
+        initial['eleve'] = self.kwargs['eleve']
+        #import pdb; pdb.set_trace()
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['nom']= Eleve.objects.get(id=self.kwargs['eleve'])
+        return context
+
+
 
     def get_success_url(self):
         return reverse('eleves')

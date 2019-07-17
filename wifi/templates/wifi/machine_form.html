@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block contenu %}
-    <div class="grid-x">
+
     <div class="cell">
     <h2>{{ machine.eleve }}</h2>
+    <h2>{{ nom }}</h2>
     </div>
     <div class="cell">
   <form action="" method="post">
@@ -15,6 +16,5 @@
     {{form}}
     <input type="submit" value = "Enregistrer">
   </form>
-    </div>
     </div>
 {% endblock %}

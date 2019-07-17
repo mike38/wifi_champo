@@ -7,15 +7,16 @@
 {% block contenu %}
 <table>
   <tbody>
-   <tr>{% for eleve in eleve_list %}
-
+   {% for eleve in eleve_list %}
+<tr>
        <td><a href="{% url 'update_eleve' eleve.id %}" >{{ eleve.nom }}</a></td>
        <td>{{ eleve.prenom }}</td>
        <td>{{ eleve.classe }}</td>
        {% for machine in eleve.machine_set.all %} <td><a href="{% url 'update_machine' machine.id %}"> {{machine}} </a>
        </td> {% endfor %}
-  {% endfor %}
+
    </tr>
+   {% endfor %}
   </tbody>
 </table>
 {% endblock %}

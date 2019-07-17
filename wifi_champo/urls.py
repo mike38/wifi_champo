@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from wifi.views import test_vue, test_classe, ListeEleves, UpdateEleve, DetailEleve, Login, UpdateMachine
+from wifi.views import test_vue, test_classe, ListeEleves, UpdateEleve, DetailEleve, Login, UpdateMachine, CreateEleve, CreateMachine
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,6 @@ urlpatterns = [
     path('eleve/<int:pk>', DetailEleve.as_view(), name="eleve"),
     path('login/', Login.as_view(), name="login"),
     path('machine/<int:pk>/update', UpdateMachine.as_view(), name="update_machine"),
+    path('new_eleve/', CreateEleve.as_view(), name="create_eleve"),
+    path('new_machine/<int:eleve>', CreateMachine.as_view(), name="create_machine"),
 ]
