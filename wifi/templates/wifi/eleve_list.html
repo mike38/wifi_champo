@@ -14,6 +14,7 @@
        <td>{{ eleve.classe }}</td>
        {% for machine in eleve.machine_set.all %} <td><a href="{% url 'update_machine' machine.id %}"> {{machine}} </a>
        </td> {% endfor %}
+<td><a href="{% url 'create_machine' eleve.id %}"> nouvelle machine </a></td>
 
    </tr>
    {% endfor %}

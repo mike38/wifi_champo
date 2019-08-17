@@ -57,11 +57,10 @@ class CreateEleve(CreateView):
 class CreateMachine(CreateView):
     model = Machine
     fields = ['mac', 'type' , 'actif']
-    def get_initial(self):
-        initial=self.initial.copy()
-        initial['eleve'] = self.kwargs['eleve']
-        #import pdb; pdb.set_trace()
-        return initial
+
+    def form_valid(self, form):
+        form.instance.eleve=Eleve.objects.get(id=self.kwargs['eleve'])
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
