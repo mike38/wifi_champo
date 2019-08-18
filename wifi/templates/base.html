@@ -7,11 +7,20 @@
   {% load staticfiles %}
   <link rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
   <link rel="stylesheet" href="{% static 'foundation/css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'wifi/style.css' %}">
   <title>{% block titre %}WIFI{% endblock %}</title>
   {% block head %}
+
   {% endblock %}
 </head>
 <body>
+<ul class="menu">
+  <li><a href="{% url 'eleves' %}">Élèves</a></li>
+  <li><a href="{% url 'create_eleve' %}">Ajout</a></li>
+ <li><a href="{% url 'upload' %}">Import</a></li>
+  <li><a href="#">Execute</a></li>
+
+</ul>
   <div class="grid-container">
     <div class="grid-x">
       {% block contenu %}
