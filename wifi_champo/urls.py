@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from wifi.views import test_vue, test_classe, ListeEleves, UpdateEleve, DetailEleve, Login, UpdateMachine, CreateEleve, CreateMachine
-from wifi.views import data_upload
+from wifi.views import data_upload, DeleteEleve, DeleteMachine
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bonjour/<int:toto>', test_vue, name='bonjour'),
@@ -28,5 +28,7 @@ urlpatterns = [
     path('machine/<int:pk>/update', UpdateMachine.as_view(), name="update_machine"),
     path('new_eleve/', CreateEleve.as_view(), name="create_eleve"),
     path('new_machine/<int:eleve>', CreateMachine.as_view(), name="create_machine"),
-    path('upload/', data_upload , name='upload')
+    path('upload/', data_upload , name='upload'),
+    path('eleve/<int:pk>/delete', DeleteEleve.as_view(), name="delete_eleve"),
+    path('machine/<int:pk>/delete', DeleteMachine.as_view(), name="delete_machine"),
 ]

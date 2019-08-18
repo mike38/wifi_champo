@@ -16,5 +16,6 @@
     {{form}}
     <input type="submit" value = "Enregistrer">
   </form>
+    <a class="hollow button alert" href="{% url 'delete_machine' machine.id %}">Supprimer</a>
     </div>
 {% endblock %}

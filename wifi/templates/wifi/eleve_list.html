@@ -9,7 +9,8 @@
   <tbody>
    {% for eleve in eleve_list %}
 <tr>
-       <td><a href="{% url 'update_eleve' eleve.id %}" >{{ eleve.nom }}</a></td>
+    <td><a class="hollow button small alert" href="{% url 'delete_eleve' eleve.id %}">Del</a></td>
+    <td><a href="{% url 'update_eleve' eleve.id %}" >{{ eleve.nom }}</a></td>
        <td>{{ eleve.prenom }}</td>
        <td>{{ eleve.classe }}</td>
        {% for machine in eleve.machine_set.all %} <td><a href="{% url 'update_machine' machine.id %}"> {{machine}} </a>

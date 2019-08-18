@@ -2,7 +2,7 @@ import csv, io
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -104,5 +104,16 @@ class CreateMachine(CreateView):
 
 
 
+    def get_success_url(self):
+        return reverse('eleves')
+
+class DeleteMachine(DeleteView):
+    template_name = "wifi/eleve_confirm_delete.html"
+    model = Machine
+    def get_success_url(self):
+        return reverse('eleves')
+
+class DeleteEleve(DeleteView):
+    model = Eleve
     def get_success_url(self):
         return reverse('eleves')
