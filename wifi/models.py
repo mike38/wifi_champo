@@ -20,10 +20,12 @@ class Eleve(models.Model):
         return "{} {} {}".format(self.prenom, self.nom, self.classe)
 
 class Machine(models.Model):
-    mac = models.CharField(unique = True, max_length = 17, validators=[django.core.validators.RegexValidator('^[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]$')])
+    mac = models.CharField(unique = True, max_length = 17, validators=[django.core.validators.RegexValidator('^[0-9a-fA-F]{2}(?::[0-9a-fA-F]{2}){5}$')])
     eleve = models.ForeignKey(Eleve, null = False, on_delete = models.CASCADE)
     type  = models.CharField(max_length = 2, choices = [('P', 'Ordinateur portable'), ('S', 'Smartphone'), ('T', 'Tablette'),])
     actif = models.BooleanField(null = False)
 
     def __str__(self):
         return self.mac
+
+

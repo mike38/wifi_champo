@@ -1,4 +1,5 @@
 import csv, io
+import pexpect, sys, re
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
@@ -117,3 +118,36 @@ class DeleteEleve(DeleteView):
     model = Eleve
     def get_success_url(self):
         return reverse('eleves')
+
+def update_wifi(request):
+    child = pexpect.spawn('ssh 192.168.1.40', encoding='utf-8')
+#    child.logfile = sys.stdout
+    child.expect('User:')
+    child.sendline('referent')
+    child.expect('Password:')
+    child.sendline('Champollion38')
+    child.expect('(Cisco Controller).*')
+    child.sendline('show macfilter summary')
+    child.expect('(Cisco Controller).*')
+    mac = child.before
+    child.close()
+    list_mac_cisco = re.findall(r"([0-9a-f]{2}(?::[0-9a-f]{2}){5})", mac, re.I)
+
+    list_mac_database = Machine.objects.filter(actif=True).values_list('mac')
+    list_mac_database = [m[0] for m in list_mac_database]
+
+    print (list_mac_cisco)
+    print(list_mac_database)
+
+    to_add=[]
+    to_delete=[]
+    for m in list_mac_database:
+        if m not in list_mac_cisco:
+            to_add.append(m)
+
+    for m in list_mac_cisco:
+        if m not in list_mac_database:
+            to_delete.append(m)
+
+    print(to_add)
+    print(to_delete)
