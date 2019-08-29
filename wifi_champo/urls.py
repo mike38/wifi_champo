@@ -16,19 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from wifi.views import test_vue, test_classe, ListeEleves, UpdateEleve, DetailEleve, Login, UpdateMachine, CreateEleve, CreateMachine
-from wifi.views import data_upload, DeleteEleve, DeleteMachine
+from wifi.views import data_upload, DeleteEleve, DeleteMachine, update_wifi
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bonjour/<int:toto>', test_vue, name='bonjour'),
     path('bonjour2/<int:toto>', test_classe.as_view(), name = "bonjour2"),
     path('eleves/', ListeEleves.as_view(), name="eleves"),
     path('eleve/<int:pk>/update', UpdateEleve.as_view(), name="update_eleve"),
+    path('eleve/<int:pk>/delete', DeleteEleve.as_view(), name="delete_eleve"),
     path('eleve/<int:pk>', DetailEleve.as_view(), name="eleve"),
     path('login/', Login.as_view(), name="login"),
     path('machine/<int:pk>/update', UpdateMachine.as_view(), name="update_machine"),
+    path('machine/<int:pk>/delete', DeleteMachine.as_view(), name="delete_machine"),
     path('new_eleve/', CreateEleve.as_view(), name="create_eleve"),
     path('new_machine/<int:eleve>', CreateMachine.as_view(), name="create_machine"),
     path('upload/', data_upload , name='upload'),
-    path('eleve/<int:pk>/delete', DeleteEleve.as_view(), name="delete_eleve"),
-    path('machine/<int:pk>/delete', DeleteMachine.as_view(), name="delete_machine"),
+    path('execute/', update_wifi, name="execute")
 ]

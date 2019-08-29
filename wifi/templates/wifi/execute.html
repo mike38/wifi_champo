@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+  Mise à jour de la borne
+{% endblock %}
+
+{% block contenu %}
+    <table>
+    <tr><td>ajout</td>{% for mac in add %}
+       <td>{{ mac }}</td>
+   {% endfor %}</tr>
+
+    <tr><td>Supprimé</td>
+    {% for mac in del %}
+       <td> {{ mac }} </td>
+    {%  endfor %}
+    </tr>
+    </table>
+
+{% endblock %}
