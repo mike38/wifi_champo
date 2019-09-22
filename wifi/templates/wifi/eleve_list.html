@@ -13,8 +13,15 @@
     <td><a href="{% url 'update_eleve' eleve.id %}" >{{ eleve.nom }}</a></td>
        <td>{{ eleve.prenom }}</td>
        <td>{{ eleve.classe }}</td>
-       {% for machine in eleve.machine_set.all %} <td><a href="{% url 'update_machine' machine.id %}"> {{machine}} </a>
-       </td> {% endfor %}
+       {% for machine in eleve.machine_set.all %}
+            {%  if machine.actif == 1  %}
+           <td><a href="{% url 'update_machine' machine.id %}" style="color:green"> {{machine}} </a>
+           </td>
+                {% else %}
+               <td><a href="{% url 'update_machine' machine.id %}"> {{machine}} </a>
+           </td>
+           {%  endif %}
+       {% endfor %}
 <td><a href="{% url 'create_machine' eleve.id %}"> nouvelle machine </a></td>
 
    </tr>

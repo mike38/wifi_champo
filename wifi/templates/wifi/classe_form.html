@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+  Nouvelle classe
+{% endblock %}
+
+{% block contenu %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value = "Enregistrer">
+  </form>
+{% endblock %}

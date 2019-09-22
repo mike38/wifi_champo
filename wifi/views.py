@@ -108,6 +108,14 @@ class CreateMachine(CreateView):
     def get_success_url(self):
         return reverse('eleves')
 
+class CreateClasse(CreateView):
+    model =  Classe
+    fields = ["nom"]
+
+    def get_success_url(self):
+        return reverse('eleves')
+
+
 class DeleteMachine(DeleteView):
     template_name = "wifi/eleve_confirm_delete.html"
     model = Machine
@@ -127,6 +135,8 @@ def update_wifi(request):
     child.sendline('referent')
     child.expect('Password:')
     child.sendline('Champollion38')
+    child.expect('(Cisco Controller).*')
+    child.sendline('config paging disable')
     child.expect('(Cisco Controller).*')
     child.sendline('show macfilter summary')
     child.expect('(Cisco Controller).*')
@@ -162,6 +172,7 @@ def update_wifi(request):
         child.expect('(Cisco Controller).*')
         # print(child.before)
 
+    child.sendline('logout')
     child.close()
 
     context={}
