@@ -22,6 +22,10 @@
   <li><a href={% url 'execute' %}>Execute</a></li>
 
 </ul>
+<form action="{% url 'eleves' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
   <div class="grid-container">
     <div class="grid-x">
       {% block contenu %}

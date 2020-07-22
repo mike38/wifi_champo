@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from django.db.models import Q
 from .models import Eleve, Machine, Classe
 
 class Login(LoginView):
@@ -66,6 +67,15 @@ def data_upload(request):
 
 class ListeEleves(ListView):
     model = Eleve
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        if query == None :
+            return  super().get_queryset()
+        object_list = Eleve.objects.filter(
+            Q(nom__icontains=query)
+        )
+        return object_list
 
 class DetailEleve(DetailView):
     model = Eleve
