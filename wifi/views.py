@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.db.models import Q
 from .models import Eleve, Machine, Classe
+import environ
 
 class Login(LoginView):
     template_name = "login.html"
@@ -138,13 +139,20 @@ class DeleteEleve(DeleteView):
         return reverse('eleves')
 
 def update_wifi(request):
+    env = environ.Env()
+    environ.Env.read_env()
+    USER=env('WIFI_USER')
+    IP=env('WIFI_IP_MASTER')
+    PASSWD=env('WIFI_PASSWD')
+
     template="wifi/execute.html"
-    child = pexpect.spawn('ssh 192.168.1.40', encoding='utf-8')
+    connect='ssh '+IP
+    child = pexpect.spawn(connect, encoding='utf-8')
 #    child.logfile = sys.stdout
     child.expect('User:')
-    child.sendline('referent')
+    child.sendline(USER)
     child.expect('Password:')
-    child.sendline('Champollion38')
+    child.sendline(PASSWD)
     child.expect('(Cisco Controller).*')
     child.sendline('config paging disable')
     child.expect('(Cisco Controller).*')
@@ -190,3 +198,11 @@ def update_wifi(request):
     context['del']=to_delete
 
     return render(request, template, context)
+
+def wifi_test(request):
+    env = environ.Env()
+
+    # reading .env file
+    environ.Env.read_env()
+    USER=env('WIFI_USER')
+    print(USER)
