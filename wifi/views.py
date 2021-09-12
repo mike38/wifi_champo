@@ -41,7 +41,7 @@ def data_upload(request):
         messages.error(request, 'this is not a CSV file')
         return render (request,template)
     data_set = csv_file.read().decode('UTF-8')
-    io_string= csv.reader(io.StringIO(data_set),delimiter=";",quotechar=None)
+    io_string= csv.reader(io.StringIO(data_set),delimiter=",",quotechar=None)
     head=next(io_string)
     print(head)
     for column in io_string:
